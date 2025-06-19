@@ -34,18 +34,16 @@ ingredients_list = st.multiselect(
 # Order processing
 if ingredients_list:
     ingredients_string = ''
-
+    
+    st.subheader('Your Order Summary:')
+    st.write(f'Name: {name_on_order}')
+    st.write(f'Ingredients: {", ".join(ingredients_list)}')
+    
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
-
-        search_on = pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-
-        st.subheader(fruit_chosen + ' Nutrition Information')
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
-        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
-
-    # st.write(ingredients_string)
-
+        st.subheader(fruit_chosen + ' Nutrition Information') 
+        smoothiefroot_response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen}")
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     # Submit button
     if st.button('Submit Order'):
