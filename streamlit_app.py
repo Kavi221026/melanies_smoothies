@@ -28,12 +28,7 @@ ingredients_list = st.multiselect(
 
 # Order processing
 if ingredients_list:
-    ingredients_string = ''
-    
-    for fruit_chosen in ingredients_list:
-        ingredients_string += fruit_chosen + ' '
-        smoothiefruit_response = requests.get("https://my.smoothieroot.com/api/fruit/watermelon")
-        sf_df = st.dataframe(data=smoothiefruit_response.json(), use_container_width=True)
+    ingredients_string = ', '.join(ingredients_list)
     
     # Display order summary
     st.subheader('Your Order Summary:')
