@@ -35,6 +35,11 @@ if ingredients_list:
         smoothiefruit_response = requests.get("https://my.smoothieroot.com/api/fruit/watermelon")
         sf_df = st.dataframe(data=smoothiefruit_response.json(), use_container_width=True)
     
+    # Display order summary
+    st.subheader('Your Order Summary:')
+    st.write(f'Name: {name_on_order}')
+    st.write(f'Ingredients: {ingredients_string}')
+    
     # Submit button
     if st.button('Submit Order'):
         my_insert_stmt = f"""
