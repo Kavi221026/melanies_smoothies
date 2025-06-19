@@ -48,8 +48,8 @@ order_filled = st.checkbox('Mark this order as filled')
 # Submit button logic
 if st.button('Submit Order'):
     my_insert_stmt = f"""
-    INSERT INTO smoothies.public.orders(name_on_order, ingredients, order_filled)
-    VALUES ('{name_on_order}', '{ingredients_string.strip()}', {str(order_filled).upper()})
+    INSERT INTO smoothies.public.orders(name_on_order, ingredients)
+    VALUES ('{name_on_order}', '{ingredients_string.strip()}')
     """
     session.sql(my_insert_stmt).collect()
     st.success('Your smoothie has been ordered!')
